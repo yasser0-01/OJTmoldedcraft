@@ -1,35 +1,36 @@
-home:
-   path: /
-   controller: App\Controller\HomeController::home
+# home:
+#    path: /
+#    controller: App\Controller\HomeController::home
 
-create:
-   path: /create
-   controller: App\Controller\HomeController::create
+# create:
+#    path: /create
+#    controller: App\Controller\HomeController::create
 
-update:
-    path: /update/{id}
-    controller: App\Controller\HomeController::update
+# update:
+#     path: /update/{id}
+#     controller: App\Controller\HomeController::update
 
-delete:
-    path: /delete/{id}
-    controller: App\Controller\HomeController::delete
+# delete:
+#     path: /delete/{id}
+#     controller: App\Controller\HomeController::delete
 
-app_login:
-   path: /login
-   controller: App\Controller\SecurityController::login
+# app_login:
+#    path: /login
+#    controller: App\Controller\SecurityController::login
 
-app_logout:
-   path: /logout
-   controller: App\Controller\SecurityController::logout
+# app_logout:
+#    path: /logout
+#    controller: App\Controller\SecurityController::logout
 
-app_register:
-   path: /register
-   controller: App\Controller\RegistrationController::register
+# app_register:
+#    path: /register
+#    controller: App\Controller\RegistrationController::register
 
-app_pricing:
-   path: /pricing
-   controller: App\Controller\PricingController::pricing
+# app_pricing:
+#    path: /pricing
+#    controller: App\Controller\PricingController::pricing
 
-app_checkout:
-   path: /checkout
-   controller: App\Controller\CheckoutController::checkout
+# app_checkout:
+#    path: /checkout
+#    controller: App\Controller\CheckoutController::checkout
+
