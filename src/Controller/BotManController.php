@@ -15,30 +15,29 @@ class BotManController extends AbstractController
     #[Route('/message', name: 'message_bot', methods: ['POST'])]
     public function messageAction(Request $request): Response
     {
-        $botman = app('botman');
-        $botman->hears('{message}', function($botman, $message){
-            if ($message == 'hi'){
-                $this->askName($botman);
-            }
-            else{
-                $botman->reply("Start a conversation by saying hi.");
-            }
-        });
-        $botman->listen();
-    }
+        // Load the BotMan WebDriver
+        DriverManager::loadDriver(\BotMan\Drivers\Web\WebDriver::class);
 
-    #[Route('/chatframe', name: 'chatframe')]
-    public function askName($botman)
-    {
-        $botman->ask('Hello! What is your Name?', function(Answer $answer) {
-   
-            $name = $answer->getText();
-   
-            $this->say('Nice to meet you '.$name);
-            {
-                return $this->render('bot_man/chatframe.html.twig');
-            }
+        // Configuration for the BotMan WebDriver
+        $config = [];
+
+        // Create BotMan instance
+        $botman = BotManFactory::create($config);
+
+        // Define BotMan hears commands
+        $botman->hears('(hello|hi|hey)', function (BotMan $bot) {
+            $bot->reply('Hello!');
         });
+
+        // Set a fallback message
+        $botman->fallback(function (BotMan $bot) {
+            $bot->reply('Sorry, I did not understand.');
+        });
+
+        // Start listening
+        $botman->listen();
+
+        return new Response();
     }
 
     #[Route('/chatframe', name: 'chatframe')]
