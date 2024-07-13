@@ -34,3 +34,7 @@
 #    path: /checkout
 #    controller: App\Controller\CheckoutController::checkout
 
+# botman_handle:
+#   path: /botman
+#   controller: App\Controller\BotManController::handle
+#   methods: [GET, POST]
