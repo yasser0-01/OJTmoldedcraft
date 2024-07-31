@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PricingController extends AbstractController
 {
-    #[Route('/pricing', name: 'app_pricing')]
+    #[Route('/profile', name: 'app_profile')]
     public function pricing(): Response
     {
-        return $this->render('pricing/index.html.twig', [
+        return $this->render('profile/index.html.twig', [
             'controller_name' => 'PricingController',
         ]);
     }

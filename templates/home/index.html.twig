@@ -42,20 +42,16 @@
       </table>
   </main>
 </div>
-</div>
 
-<script>
-  var botmanWidget = {
-    frameEndpoint: "{{ path('chatframe') }}",
-    chatServer: "{{ path('message_bot') }}",
-    introMessage: 'Welcome to Yas Store, to get started say hi!',
-    title: 'YAS STORE Inc.', 
-    mainColor: '#1978E3',
-    bubbleBackground: '#1978E3',
-    aboutText: ''
-    };
-</script>
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+    <script>
+      var botmanWidget = {
+        frameEndpoint: "{{ path('chatframe') }}",
+        chatServer: "{{ path('botman_handle') }}",
+        introMessage: "Welcome to Yas Store, how may I help you?",
+        title: 'YAS STORE Inc.'
+      };
+    </script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
