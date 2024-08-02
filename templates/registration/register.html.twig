@@ -34,15 +34,33 @@
                     }) }}
                 </div>
                 <div class="form-group">
+                    {{ form_label(registrationForm.firstname) }}
+                    {{ form_widget(registrationForm.firstname, {
+                        'attr': {'class': 'form-control form-control-center centered-input'}
+                    }) }}
+                </div>
+                <div class="form-group">
                     {{ form_label(registrationForm.lastname) }}
                     {{ form_widget(registrationForm.lastname, {
+                        'attr': {'class': 'form-control form-control-center centered-input'}
+                    }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(registrationForm.phoneNumber) }}
+                    {{ form_widget(registrationForm.phoneNumber, {
+                        'attr': {'class': 'form-control form-control-center centered-input'}
+                    }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(registrationForm.image, 'Profile Image') }}
+                    {{ form_widget(registrationForm.image, {
                         'attr': {'class': 'form-control form-control-center centered-input'}
                     }) }}
                 </div>
                 <div class="form-check">
                     {{ form_widget(registrationForm.agreeTerms) }}
                     {{ form_label(registrationForm.agreeTerms, 'I agree to the terms') }}
-                </div>
+                </div><br>
         <button class="btn btn-lg btn-primary" type="submit">Register</button>
     {{ form_end(registrationForm) }}
     </div>

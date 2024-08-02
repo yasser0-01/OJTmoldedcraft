@@ -23,6 +23,26 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Handle image upload
+            /** @var UploadedFile $file */
+            $file = $form->get('image')->getData();
+            
+            if ($file) {
+                // Generate a unique file name
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = uniqid() . '.' . $file->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                $file->move(
+                    $this->getParameter('kernel.project_dir') . '/public/uploads',
+                    $newFilename
+                );
+
+                // Save the new file name in the User entity
+                $user->setImagePath('/uploads/' . $newFilename);
+            }
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
