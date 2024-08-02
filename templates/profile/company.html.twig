@@ -1,0 +1,356 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center middle containers">
+    <div class="phone-border">
+
+      <img src="https://i.ibb.co/yn36zR0/concentrixlogo.png" class="cover-img">
+
+      <div class="cell auto text-center">
+        {% if app.user %}
+          <img src="{{ asset(app.user.getImagePath) }}" class="profile-picture" alt="Profile Image">
+        {% endif %}
+        <a>
+          <img src="https://i.ibb.co/72VGttY/bookmark-icon.png" class="bookmark-icon">
+        </a>
+      </div>
+
+      <div class="cell auto text-center">
+        <p class="profile-font profile-info-name">
+          {% if app.user %} 
+              {{ app.user.getFirstname }}
+          {% endif %}
+          {% if app.user %} 
+              {{ app.user.getLastname }}
+          {% endif %}
+        </p>
+        <p class="profile-font profile-info-title">
+          Software Developer
+        </p>
+      </div>
+
+      <div class="cell auto text-center">
+        <button class="share-btn">
+          <img src="https://i.ibb.co/C0kK58X/share-icon.png" class="share-btn-pic">
+          Share
+        </button>
+      </div>
+
+      <div class="cell auto text-center">
+        <div class="border-line"></div>
+      </div>
+
+      <nav>
+        <div class="links">
+          <div class="cell auto text-center">
+            <a data-active="personal" href="{{ path('app_profile') }}">
+              Personal
+            </a>
+            <a data-active="company" href="{{ path('app_profilecompany') }}">
+              Company
+            </a>
+            <a data-active="qr" href="{{ path('app_profileqr') }}">
+              QR Code
+            </a>
+          </div><br>
+        </div>
+      </nav>
+
+      <a class="info-text"><img src="https://i.ibb.co/Sf221vF/building-icon.png" class="personal-icon">
+        CONCENTRIX
+      </a><br>
+      <a class="info-text"><img src="https://i.ibb.co/V2XQ9p9/email-icon.png" class="personal-icon">
+        mikeharrington@concentrix.com
+      </a><br>
+      <a class="info-text"><img src="https://i.ibb.co/zR7hf0f/web-icon.png" class="personal-icon">
+        https://www.concentrix.com
+      </a><br>
+      <a class="info-text"><img src="https://i.ibb.co/k93ytLd/phone-calling.png" class="personal-icon">
+        09857716479
+      </a><br>
+      <a class="info-text"><img src="https://i.ibb.co/CJG81Lk/landline-icon.png" class="personal-icon">
+        1 (877) 889-9009
+      </a><br>
+
+      <img src="https://i.ibb.co/5Fdk2TP/footer-background.png" class="footer-img">
+
+      </div>
+    </div>
+</div>
+
+<style>
+.containers {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.phone-border {
+width: 430px;
+height: 800px;
+box-sizing: border-box;
+border: 1px groove #b6b6b6;
+border-radius: 20px;
+position: relative;
+background-color: #fff;
+overflow: hidden;
+}
+
+.cover-img {
+border-top-left-radius: 20px;
+border-top-right-radius: 20px;
+align-items: center;
+justify-content: center;
+object-fit: cover;
+width: 100%;
+}
+
+a {
+text-decoration: none;
+}
+
+.footer-img {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+border-bottom-left-radius: 20px;
+border-bottom-right-radius: 20px;
+}
+
+.bookmark-icon {
+width: 30px;
+height: 30px;
+margin-left: -20%;
+margin-top: 2%;
+float: right;
+}
+
+.bookmark-icon:hover {
+transform: scale(1.1);
+}
+
+.profile-picture {
+width: 120px;
+height: 120px;
+border-radius: 50%;
+align-items: center;
+object-fit: cover;
+margin-top: -60px;
+}
+
+.profile-font {
+font-family: "Montserrat", sans-serif
+}
+.profile-info-name {
+font-size: 1.3rem;
+margin: 0;
+}
+.profile-info-title {
+font-size: 0.8rem;
+margin-top: -5px;
+margin-bottom: 25px;
+color: #797979;
+}
+
+.share-btn {
+margin-top: -25px;
+display: inline-flex;
+padding: 9px 37px;
+border-radius: 10px;
+background-color: #003366;
+color: white;
+font-size: 16px;
+font-family: "Montserrat", sans-serif
+}
+
+.share-btn:hover {
+transform: scale(1.1);
+background-color: #0055cc;
+}
+
+.border-line {
+border: 1px solid #b9b9b9;
+margin-top: 25px;
+width: 80%;
+margin-left: auto;
+margin-right: auto;
+}
+
+.share-btn-pic {
+width: 20px;
+height: 20px;
+margin-right: 5px;
+}
+
+.personal-icon {
+width: 25px;
+height: 25px;
+margin-right: 5px;
+margin-left: 40px;
+margin-right: 10px;
+margin-bottom: 20px;
+}
+
+@media (max-width: 345px) {
+.personal-icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+}
+
+@media (max-width: 225px) {
+.personal-icon {
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+}
+
+@media (max-width: 175px) {
+.personal-icon {
+    width: 7px;
+    height: 7px;
+    margin-right: 1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+}
+
+.info-text {
+margin-top: 0.1%;
+display: inline-flex;
+color: rgb(0, 0, 0);
+font-size: 16px;
+font-family: "Montserrat", sans-serif;
+}
+
+@media (max-width: 417px) {
+.info-text {
+    margin-top: 0.1%;
+    display: inline-flex;
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+    font-family: "Montserrat", sans-serif;
+}
+}
+
+@media (max-width: 225px) {
+.info-text {
+    margin-top: 0.1%;
+    display: inline-flex;
+    color: rgb(0, 0, 0);
+    font-size: 8px;
+    font-family: "Montserrat", sans-serif;
+}
+}
+
+@media (max-width: 175px) {
+.info-text {
+    margin-top: 0.1%;
+    display: inline-flex;
+    color: rgb(0, 0, 0);
+    font-size: 6px;
+    font-family: "Montserrat", sans-serif;
+}
+}
+
+.qr-pic {
+width: 150px;
+height: 150px;
+margin-top: 0;
+}
+
+.qr-border {
+width: 150px;
+height: 150px;
+border: 1px;
+box-sizing: border-box;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 20px;
+margin: auto;
+background-color: #003366;
+}
+
+.scan-text {
+margin-top: 10px;
+font-size: 15px;
+color: #000000;
+font-family: "Montserrat", sans-serif;
+text-align: center;
+}
+
+nav {
+display: grid;
+grid-template-columns: auto 1fr;
+display: flex;
+justify-content: center;
+align-items: center;
+grid-column-gap: 30px;
+margin-top: 5%;
+}
+
+nav a{
+display: inline-block;
+padding: 10px 17px;
+color: #003366;
+font-family: "Montserrat", sans-serif;
+border-radius: 10px;
+transition: all 0.3s;
+margin-right: 3px;
+font-size: 16px;
+}
+
+@media (max-width: 345px) {
+nav a {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #003366;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+    transition: all 0.3s;
+    margin-right: 3px;
+    font-size: 8px;
+}
+}
+
+@media (max-width: 197px) {
+nav a {
+    display: inline-block;
+    padding: 3px 7px;
+    color: #003366;
+    font-family: "Montserrat", sans-serif;
+    border-radius: 10px;
+    transition: all 0.3s;
+    margin-right: 3px;
+    font-size: 5px;
+}
+}
+
+nav a.active {
+background: #003366;
+color: #fff;
+box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+nav a:hover {
+background: #0261c0;
+color: #fff;
+box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+</style>
+
+{% endblock %}
