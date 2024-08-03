@@ -15,29 +15,42 @@
             width: 350px;
         }
         .centered-input {
-        text-align: center;
+            text-align: center;
+        }
+        .form-row {
+            display: flex;
+            gap: 5px; /* Adjust spacing between items */
+        }
+
+        .form-group {
+            flex: 1; /* Allows the items to grow equally */
         }
     </style>
     
     {{ form_errors(registrationForm) }}
     {{ form_start(registrationForm) }}
-                <div class="form-group">
-                    {{ form_label(registrationForm.email) }}
-                    {{ form_widget(registrationForm.email, {
-                        'attr': {'class': 'form-control form-control-center centered-input'}
-                    }) }}
-                </div>  
-                <div class="form-group">
-                    {{ form_label(registrationForm.plainPassword, 'Password') }}
-                    {{ form_widget(registrationForm.plainPassword, {
-                        'attr': {'class': 'form-control form-control-center centered-input'}
-                    }) }}
+
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form_label(registrationForm.email) }}
+                        {{ form_widget(registrationForm.email, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>  
+                    <div class="form-group">
+                        {{ form_label(registrationForm.plainPassword, 'Password') }}
+                        {{ form_widget(registrationForm.plainPassword, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
                 </div>
-                <div class="form-group">
-                    {{ form_label(registrationForm.firstname) }}
-                    {{ form_widget(registrationForm.firstname, {
-                        'attr': {'class': 'form-control form-control-center centered-input'}
-                    }) }}
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form_label(registrationForm.firstname) }}
+                        {{ form_widget(registrationForm.firstname, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
                 </div>
                 <div class="form-group">
                     {{ form_label(registrationForm.lastname) }}

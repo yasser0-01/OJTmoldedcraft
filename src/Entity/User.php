@@ -41,6 +41,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imagePath = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $coverImage = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $companyName = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $companyEmail = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $companyWebsite = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $companyPhone = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $companyLandline = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -174,6 +192,78 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setImagePath(?string $imagePath): static // Add this method
     {
         $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(?string $coverImage): static
+    {
+        $this->coverImage = $coverImage;
+
+        return $this;
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+
+    public function setCompanyName(?string $companyName): static
+    {
+        $this->companyName = $companyName;
+
+        return $this;
+    }
+
+    public function getCompanyEmail(): ?string
+    {
+        return $this->companyEmail;
+    }
+
+    public function setCompanyEmail(?string $companyEmail): static
+    {
+        $this->companyEmail = $companyEmail;
+
+        return $this;
+    }
+
+    public function getCompanyWebsite(): ?string
+    {
+        return $this->companyWebsite;
+    }
+
+    public function setCompanyWebsite(?string $companyWebsite): static
+    {
+        $this->companyWebsite = $companyWebsite;
+
+        return $this;
+    }
+
+    public function getCompanyPhone(): ?string
+    {
+        return $this->companyPhone;
+    }
+
+    public function setCompanyPhone(?string $companyPhone): static
+    {
+        $this->companyPhone = $companyPhone;
+
+        return $this;
+    }
+
+    public function getCompanyLandline(): ?string
+    {
+        return $this->companyLandline;
+    }
+
+    public function setCompanyLandline(?string $companyLandline): static
+    {
+        $this->companyLandline = $companyLandline;
 
         return $this;
     }
