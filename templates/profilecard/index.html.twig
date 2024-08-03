@@ -3,5 +3,71 @@
 {% block title %}Hello ProfilecardController!{% endblock %}
 
 {% block body %}
-    
+
+<div class="containers">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Company</th>
+                <th scope="col">Name</th>
+                <th scope="col">Job Title</th>
+                <th scope="col">View Profile</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for data in list %}
+            <tr>
+                <th scope="row">{{ data.companyname }}</th>
+                <td>{{ data.firstname }} {{ data.lastname }}</td>
+                <td>{{ data.jobtitle }}</td>
+                <td>
+                    <a class="btn btn-warning" href="{{ path('app_viewprofile', {'id': data.id }) }}">View</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .containers {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .table {
+        width: 100%;
+        max-width: 800px;
+        border-collapse: separate;
+        border-spacing: 0 5px;
+    }
+
+    .table th, .table td {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+        background-color: #fff;
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+    }
+
+    .btn {
+        margin: 0 5px;
+        background-color: #25d4f3;
+        border: #0004ff;
+        padding: 5px 16px;
+        transition: background-color 0.3s, color 0.3s
+    }
+    .btn:hover {
+        background-color: #0044ff;
+        border-color: #25d4f3;
+        color: #fff;
+}
+
+</style>
+
 {% endblock %}

@@ -2,96 +2,53 @@
 
 {% block title %}Profile{% endblock %}
 
-{% block stylesheets %}
-  {{ parent() }}
-  <link href="{{ asset('css/prof1.css') }}" rel="stylesheet">
-{% endblock %}
-
 {% block body %}
-    <div class="grid-container">
-      <div class="grid-x grid-margin-x align-center middle containers">
-        <div class="phone-border">
-
-          {% if app.user %}
-              <img src="{{ asset(app.user.getCoverImage) }}" class="cover-img">
-          {% endif %}
-
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center middle containers">
+      <div class="phone-border">
+          <img src="{{ asset(user.getCoverImage) }}" class="cover-img">
           <div class="cell auto text-center">
-            {% if app.user %}
-              <img src="{{ asset(app.user.getImagePath) }}" class="profile-picture" alt="Profile Image">
-            {% endif %}
-            <a>
-              <img src="https://i.ibb.co/72VGttY/bookmark-icon.png" class="bookmark-icon">
-            </a>
+              <img src="{{ asset(user.getImagePath) }}" class="profile-picture" alt="Profile Image">
+              <a>
+                  <img src="https://i.ibb.co/72VGttY/bookmark-icon.png" class="bookmark-icon">
+              </a>
           </div>
-
           <div class="cell auto text-center">
-            <p class="profile-font profile-info-name">
-              {% if app.user %} 
-                  {{ app.user.getFirstname }}
-              {% endif %}
-              {% if app.user %} 
-                  {{ app.user.getLastname }}
-              {% endif %}
-            </p>
-            <p class="profile-font profile-info-title">
-              {% if app.user %} 
-                  {{ app.user.jobTitle }}
-              {% endif %}
-            </p>
+              <p class="profile-font profile-info-name">{{ user.firstname }} {{ user.lastname }}</p>
+              <p class="profile-font profile-info-title">{{ user.jobTitle }}</p>
           </div>
-
           <div class="cell auto text-center">
-            <button class="share-btn">
-              <img src="https://i.ibb.co/C0kK58X/share-icon.png" class="share-btn-pic">
-              Share
-            </button>
+              <button class="share-btn">
+                  <img src="https://i.ibb.co/C0kK58X/share-icon.png" class="share-btn-pic"> Share
+              </button>
           </div>
-
           <div class="cell auto text-center">
-            <div class="border-line"></div>
+              <div class="border-line"></div>
           </div>
-
           <nav>
-            <div class="links">
-              <div class="cell auto text-center">
-                <a data-active="personal" href="{{ path('app_profile') }}">
-                  Personal
-                </a>
-                <a data-active="company" href="{{ path('app_profilecompany') }}">
-                  Company
-                </a>
-                <a data-active="qr" href="{{ path('app_profileqr') }}">
-                  QR Code
-                </a>
-              </div><br>
-            </div>
+              <div class="links">
+                  <div class="cell auto text-center">
+                    <a data-active="personal" href="{{ path('app_viewprofilepersonal', {'id': user.id}) }}">Personal</a>
+                    <a data-active="company" href="{{ path('app_viewprofile', {'id': user.id}) }}">Company</a>
+                    <a data-active="qr" href="{{ path('app_viewprofileqr', {'id': user.id}) }}">QR Code</a>
+                  </div><br>
+              </div>
           </nav>
 
-          <a class="info-text"><img src="https://i.ibb.co/k93ytLd/phone-calling.png" class="personal-icon">
-            {% if app.user %} 
-                  {{ app.user.getPhoneNumber }}
-            {% endif %}
-          </a><br>
-          <a class="info-text"><img src="https://i.ibb.co/V2XQ9p9/email-icon.png" class="personal-icon">
-            {% if app.user %} 
-                  {{ app.user.userIdentifier }}
-            {% endif %}
-          </a>
-          <a class="info-text"><img src="https://i.ibb.co/KKH77XN/linkedin-icon.png" class="personal-icon">
-            https://www.linkedin.com/{% if app.user %} 
-                  {{ app.user.getFirstname }}
-            {% endif %}
-          </a>
-
+          <div class="qr-border">
+            <img src="https://i.ibb.co/dPxJZxf/qr-icon.png" class="qr-pic">
+          </div>
+          <p class="scan-text">SCAN HERE</p>
+    
           <img src="https://i.ibb.co/5Fdk2TP/footer-background.png" class="footer-img">
 
-          </div>
-        </div>
-    </div>
+          <img src="https://i.ibb.co/5Fdk2TP/footer-background.png" class="footer-img">
+      </div>
+  </div>
+</div>
 
-    <style>
-.containers {
+<style>
+  .containers {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -362,4 +319,5 @@ nav a:hover {
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 </style>
+
 {% endblock %}

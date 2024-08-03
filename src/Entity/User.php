@@ -59,6 +59,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $companyLandline = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $jobTitle = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -264,6 +267,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCompanyLandline(?string $companyLandline): static
     {
         $this->companyLandline = $companyLandline;
+
+        return $this;
+    }
+
+    public function getJobTitle(): ?string
+    {
+        return $this->jobTitle;
+    }
+
+    public function setJobTitle(?string $jobTitle): self
+    {
+        $this->jobTitle = $jobTitle;
 
         return $this;
     }

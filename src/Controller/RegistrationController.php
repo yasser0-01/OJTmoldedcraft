@@ -43,6 +43,21 @@ class RegistrationController extends AbstractController
                 $user->setImagePath('/uploads/' . $newFilename);
             }
 
+            // Handle cover image upload
+            /** @var UploadedFile $coverImageFile */
+            $coverImageFile = $form->get('coverImage')->getData();
+            if ($coverImageFile) {
+                $originalFilename = pathinfo($coverImageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = uniqid() . '.' . $coverImageFile->guessExtension();
+
+                $coverImageFile->move(
+                    $this->getParameter('kernel.project_dir') . '/public/uploads',
+                    $newFilename
+                );
+
+                $user->setCoverImage('/uploads/' . $newFilename);
+            }
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

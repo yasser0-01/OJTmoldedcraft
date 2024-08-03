@@ -7,7 +7,9 @@
   <div class="grid-x grid-margin-x align-center middle containers">
     <div class="phone-border">
 
-      <img src="https://i.ibb.co/yn36zR0/concentrixlogo.png" class="cover-img">
+      {% if app.user %}
+        <img src="{{ asset(app.user.getCoverImage) }}" class="cover-img">
+      {% endif %}
 
       <div class="cell auto text-center">
         {% if app.user %}
@@ -28,7 +30,9 @@
           {% endif %}
         </p>
         <p class="profile-font profile-info-title">
-          Software Developer
+          {% if app.user %} 
+              {{ app.user.jobTitle }}
+          {% endif %}
         </p>
       </div>
 
@@ -95,6 +99,7 @@ align-items: center;
 justify-content: center;
 object-fit: cover;
 width: 100%;
+height: 150px;
 }
 
 a {

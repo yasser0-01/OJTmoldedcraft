@@ -23,6 +23,12 @@ class RegistrationFormType extends AbstractType
             ->add('email')
             ->add('lastname')
             ->add('firstname')
+            ->add('companyname')
+            ->add('companywebsite')
+            ->add('companyemail')
+            ->add('companyphone')
+            ->add('companylandline')
+            ->add('jobtitle')
             ->add('phoneNumber', TextType::class, [
                 'required' => false,
                 'constraints' => [
@@ -34,6 +40,20 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('image', FileType::class, [
                 'label' => 'Profile Image (JPEG, PNG file)',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new \Symfony\Component\Validator\Constraints\Image([
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image (JPEG or PNG).',
+                    ]),
+                ],
+            ])
+            ->add('coverImage', FileType::class, [
+                'label' => 'Cover Image (JPEG, PNG file)',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [

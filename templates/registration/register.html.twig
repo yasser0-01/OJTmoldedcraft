@@ -12,18 +12,16 @@
     <style>
         .form-control-center {
             margin: 0 auto;
-            width: 350px;
+            width: 300px;
         }
         .centered-input {
             text-align: center;
         }
         .form-row {
             display: flex;
-            gap: 5px; /* Adjust spacing between items */
-        }
-
-        .form-group {
-            flex: 1; /* Allows the items to grow equally */
+            gap: 20px; /* Adjust spacing between items */
+            justify-content: center; /* Center items horizontally */
+            align-items: center;
         }
     </style>
     
@@ -43,33 +41,83 @@
                             'attr': {'class': 'form-control form-control-center centered-input'}
                         }) }}
                     </div>
+                    <div class="form-group">
+                        {{ form_label(registrationForm.companyname, 'Company Name') }}
+                        {{ form_widget(registrationForm.companyname, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
                 </div>
+
                 <div class="form-row">
                     <div class="form-group">
-                        {{ form_label(registrationForm.firstname) }}
+                        {{ form_label(registrationForm.firstname, 'First Name') }}
                         {{ form_widget(registrationForm.firstname, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(registrationForm.lastname, 'Last Name') }}
+                        {{ form_widget(registrationForm.lastname, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(registrationForm.companywebsite, 'Company Website') }}
+                        {{ form_widget(registrationForm.companywebsite, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form_label(registrationForm.phoneNumber, 'Phone Number') }}
+                        {{ form_widget(registrationForm.phoneNumber, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(registrationForm.companyphone, 'Company Phone') }}
+                        {{ form_widget(registrationForm.companyphone, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(registrationForm.companylandline, 'Company Landline') }}
+                        {{ form_widget(registrationForm.companylandline, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form_label(registrationForm.companyemail, 'Company Email') }}
+                        {{ form_widget(registrationForm.companyemail, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(registrationForm.image, 'Profile Image') }}
+                        {{ form_widget(registrationForm.image, {
+                            'attr': {'class': 'form-control form-control-center centered-input'}
+                        }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(registrationForm.coverImage, 'Cover Image') }}
+                        {{ form_widget(registrationForm.coverImage, {
                             'attr': {'class': 'form-control form-control-center centered-input'}
                         }) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    {{ form_label(registrationForm.lastname) }}
-                    {{ form_widget(registrationForm.lastname, {
+                    {{ form_label(registrationForm.jobtitle, 'Job Title') }}
+                    {{ form_widget(registrationForm.jobtitle, {
                         'attr': {'class': 'form-control form-control-center centered-input'}
                     }) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(registrationForm.phoneNumber) }}
-                    {{ form_widget(registrationForm.phoneNumber, {
-                        'attr': {'class': 'form-control form-control-center centered-input'}
-                    }) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(registrationForm.image, 'Profile Image') }}
-                    {{ form_widget(registrationForm.image, {
-                        'attr': {'class': 'form-control form-control-center centered-input'}
-                    }) }}
-                </div>
+                </div><br>
+
                 <div class="form-check">
                     {{ form_widget(registrationForm.agreeTerms) }}
                     {{ form_label(registrationForm.agreeTerms, 'I agree to the terms') }}

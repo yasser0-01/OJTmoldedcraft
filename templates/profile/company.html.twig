@@ -7,7 +7,9 @@
       <div class="grid-x grid-margin-x align-center middle containers">
         <div class="phone-border">
 
-          <img src="https://i.ibb.co/yn36zR0/concentrixlogo.png" class="cover-img">
+          {% if app.user %}
+              <img src="{{ asset(app.user.getCoverImage) }}" class="cover-img">
+          {% endif %}
 
           <div class="cell auto text-center">
             {% if app.user %}
@@ -28,7 +30,9 @@
               {% endif %}
             </p>
             <p class="profile-font profile-info-title">
-              Software Developer
+              {% if app.user %} 
+                  {{ app.user.jobTitle }}
+              {% endif %}
             </p>
           </div>
 
@@ -60,19 +64,29 @@
           </nav>
 
           <a class="info-text"><img src="https://i.ibb.co/Sf221vF/building-icon.png" class="personal-icon">
-            CONCENTRIX
+            {% if app.user %} 
+                  {{ app.user.getCompanyName }}
+            {% endif %}
           </a><br>
           <a class="info-text"><img src="https://i.ibb.co/V2XQ9p9/email-icon.png" class="personal-icon">
-            mikeharrington@concentrix.com
+            {% if app.user %} 
+                  {{ app.user.getCompanyEmail }}
+            {% endif %}
           </a><br>
           <a class="info-text"><img src="https://i.ibb.co/zR7hf0f/web-icon.png" class="personal-icon">
-            https://www.concentrix.com
+            {% if app.user %} 
+                  {{ app.user.getCompanyWebsite }}
+            {% endif %}
           </a><br>
           <a class="info-text"><img src="https://i.ibb.co/k93ytLd/phone-calling.png" class="personal-icon">
-            09857716479
+            {% if app.user %} 
+                  {{ app.user.getCompanyPhone }}
+            {% endif %}
           </a><br>
           <a class="info-text"><img src="https://i.ibb.co/CJG81Lk/landline-icon.png" class="personal-icon">
-            1 (877) 889-9009
+            {% if app.user %} 
+                  {{ app.user.getCompanyLandline }}
+            {% endif %}
           </a><br>
 
           <img src="https://i.ibb.co/5Fdk2TP/footer-background.png" class="footer-img">
@@ -106,6 +120,7 @@
     justify-content: center;
     object-fit: cover;
     width: 100%;
+    height: 150px;
 }
 
 a {
