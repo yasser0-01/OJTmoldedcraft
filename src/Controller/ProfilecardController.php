@@ -27,7 +27,7 @@ class ProfilecardController extends AbstractController
         ]);
     }
 
-    #[Route('/viewprofile/{id}', name: 'app_viewprofile')]
+    #[Route('/viewprofile/{id}', name: 'app_viewprofilepersonal')]
     public function viewProfile(int $id): Response
     {
         $user = $this->doctrine->getRepository(User::class)->find($id);
@@ -36,13 +36,13 @@ class ProfilecardController extends AbstractController
             throw $this->createNotFoundException('The user does not exist');
         }
 
-        return $this->render('profilecard/pccompany.html.twig', [
+        return $this->render('profilecard/pcpersonal.html.twig', [
             'controller_name' => 'ProfilecardController',
             'user' => $user,
         ]);
     }
 
-    #[Route('/viewprofilepersonal/{id}', name: 'app_viewprofilepersonal')]
+    #[Route('/viewprofilepersonal/{id}', name: 'app_viewprofile')]
     public function viewPersonal(int $id): Response
     {
         $user = $this->doctrine->getRepository(User::class)->find($id);
@@ -51,7 +51,7 @@ class ProfilecardController extends AbstractController
             throw $this->createNotFoundException('The user does not exist');
         }
 
-        return $this->render('profilecard/pcpersonal.html.twig', [
+        return $this->render('profilecard/pccompany.html.twig', [
             'controller_name' => 'ProfilecardController',
             'user' => $user,
         ]);

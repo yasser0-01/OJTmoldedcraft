@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -61,6 +63,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $jobTitle = null;
+
+    #[ORM\OneToMany(mappedBy: 'follower', targetEntity: Follow::class)]
+    private Collection $following;
+
+    #[ORM\OneToMany(mappedBy: 'followed', targetEntity: Follow::class)]
+    private Collection $followers;
+
+    public function __construct()
+    {
+        $this->following = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -282,4 +296,74 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Follow[]
+     */
+    public function getFollowing(): Collection
+    {
+        return $this->following;
+    }
+
+    public function addFollowing(Follow $follow): self
+    {
+        if (!$this->following->contains($follow)) {
+            $this->following->add($follow);
+            $follow->setFollower($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollowing(Follow $follow): self
+    {
+        if ($this->following->removeElement($follow)) {
+            // set the owning side to null (unless already changed)
+            if ($follow->getFollower() === $this) {
+                $follow->setFollower(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Follow[]
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function addFollower(Follow $follow): self
+    {
+        if (!$this->followers->contains($follow)) {
+            $this->followers->add($follow);
+            $follow->setFollowed($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(Follow $follow): self
+    {
+        if ($this->followers->removeElement($follow)) {
+            // set the owning side to null (unless already changed)
+            if ($follow->getFollowed() === $this) {
+                $follow->setFollowed(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isFollowing(User $user): bool
+    {
+        foreach ($this->following as $follow) {
+            if ($follow->getFollowed() === $user) {
+                return true;
+            }
+        }
+        return false;
+        }
 }

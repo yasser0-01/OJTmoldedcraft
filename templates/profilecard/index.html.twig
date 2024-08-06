@@ -21,7 +21,7 @@
                 <td>{{ data.firstname }} {{ data.lastname }}</td>
                 <td>{{ data.jobtitle }}</td>
                 <td>
-                    <a class="btn btn-warning" href="{{ path('app_viewprofile', {'id': data.id }) }}">View</a>
+                    <a class="btn btn-warning" href="{{ path('app_viewprofilepersonal', {'id': data.id }) }}">View</a>
                 </td>
             </tr>
         {% endfor %}

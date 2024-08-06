@@ -42,7 +42,7 @@
           </div>
 
           <div class="cell auto text-center">
-            <button class="share-btn">
+            <button class="share-btn" onclick="shareContent()">
               <img src="https://i.ibb.co/C0kK58X/share-icon.png" class="share-btn-pic">
               Share
             </button>
@@ -68,17 +68,17 @@
             </div>
           </nav>
 
-          <a class="info-text"><img src="https://i.ibb.co/k93ytLd/phone-calling.png" class="personal-icon">
+          <a class="info-text"><i class="fa-solid fa-phone fa-xl personal-icon"></i>
             {% if app.user %} 
                   {{ app.user.getPhoneNumber }}
             {% endif %}
           </a><br>
-          <a class="info-text"><img src="https://i.ibb.co/V2XQ9p9/email-icon.png" class="personal-icon">
+          <a class="info-text"><i class="fa-solid fa-envelope fa-xl personal-icon"></i>
             {% if app.user %} 
                   {{ app.user.userIdentifier }}
             {% endif %}
           </a>
-          <a class="info-text"><img src="https://i.ibb.co/KKH77XN/linkedin-icon.png" class="personal-icon">
+          <a class="info-text"><i class="fa-brands fa-linkedin fa-xl personal-icon"></i>
             https://www.linkedin.com/{% if app.user %} 
                   {{ app.user.getFirstname }}
             {% endif %}
@@ -89,6 +89,23 @@
           </div>
         </div>
     </div>
+
+    <script>
+        function shareContent() {
+          if (navigator.share) {
+            navigator.share({
+              title: 'Share this Profile Card',
+              text: 'Check out this content!',
+              url: 'https://example.com'
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing:', error));
+          } else {
+            // Fallback if the Web Share API is not supported
+            alert('Sharing not supported on this device.');
+          }
+        }
+      </script>
 
     <style>
 .containers {
@@ -135,12 +152,24 @@ a {
     width: 30px;
     height: 30px;
     margin-left: -20%;
-    margin-top: 2%;
+    margin-top: 3%;
     float: right;
+    margin-right: 10px;
 }
 
 .bookmark-icon:hover {
     transform: scale(1.1);
+}
+
+@media (max-width: 270px) {
+    .bookmark-icon {
+        width: 20px;
+        height: 20px;
+        margin-left: -40%;
+        margin-top: 3%;
+        margin-right: 10px;
+        float: right;
+    }
 }
 
 .profile-picture {
@@ -197,16 +226,17 @@ a {
 }
 
 .personal-icon {
+    margin-top: 10px;
     width: 25px;
     height: 25px;
-    margin-right: 5px;
     margin-left: 40px;
-    margin-right: 10px;
-    margin-bottom: 20px;
+    margin-right: 15px;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 345px) {
     .personal-icon {
+        margin-top: 10px;
         width: 15px;
         height: 15px;
         margin-right: 5px;
@@ -218,6 +248,7 @@ a {
 
 @media (max-width: 225px) {
     .personal-icon {
+        margin-top: 10px;
         width: 10px;
         height: 10px;
         margin-right: 3px;
@@ -229,6 +260,7 @@ a {
 
 @media (max-width: 175px) {
     .personal-icon {
+        margin-top: 10px;
         width: 7px;
         height: 7px;
         margin-right: 1px;
@@ -239,7 +271,7 @@ a {
 }
 
 .info-text {
-    margin-top: 0.1%;
+    margin-top: -10px;
     display: inline-flex;
     color: rgb(0, 0, 0);
     font-size: 16px;
