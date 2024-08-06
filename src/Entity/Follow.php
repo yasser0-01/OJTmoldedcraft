@@ -2,31 +2,24 @@
 
 namespace App\Entity;
 
-use App\Repository\FollowRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\User;
+use App\Repository\FollowRepository;
 
 #[ORM\Entity(repositoryClass: FollowRepository::class)]
-
 class Follow
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: 'integer')]
+    private $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'following')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $follower = null;
+    private $follower;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'followers')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $followed = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    private $followee;
 
     public function getFollower(): ?User
     {
@@ -40,14 +33,14 @@ class Follow
         return $this;
     }
 
-    public function getFollowed(): ?User
+    public function getFollowee(): ?User
     {
-        return $this->followed;
+        return $this->followee;
     }
 
-    public function setFollowed(?User $followed): self
+    public function setFollowee(?User $followee): self
     {
-        $this->followed = $followed;
+        $this->followee = $followee;
 
         return $this;
     }

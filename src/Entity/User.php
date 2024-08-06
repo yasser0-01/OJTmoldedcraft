@@ -65,10 +65,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $jobTitle = null;
 
     #[ORM\OneToMany(mappedBy: 'follower', targetEntity: Follow::class)]
-    private Collection $following;
+    private $following;
 
-    #[ORM\OneToMany(mappedBy: 'followed', targetEntity: Follow::class)]
-    private Collection $followers;
+    #[ORM\OneToMany(mappedBy: 'followee', targetEntity: Follow::class)]
+    private $followers;
 
     public function __construct()
     {
@@ -305,10 +305,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->following;
     }
 
+    /**
+     * @return Collection|Follow[]
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
     public function addFollowing(Follow $follow): self
     {
         if (!$this->following->contains($follow)) {
-            $this->following->add($follow);
+            $this->following[] = $follow;
             $follow->setFollower($this);
         }
 
@@ -327,19 +335,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Follow[]
-     */
-    public function getFollowers(): Collection
-    {
-        return $this->followers;
-    }
-
     public function addFollower(Follow $follow): self
     {
         if (!$this->followers->contains($follow)) {
-            $this->followers->add($follow);
-            $follow->setFollowed($this);
+            $this->followers[] = $follow;
+            $follow->setFollowee($this);
         }
 
         return $this;
@@ -348,22 +348,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeFollower(Follow $follow): self
     {
         if ($this->followers->removeElement($follow)) {
-            // set the owning side to null (unless already changed)
-            if ($follow->getFollowed() === $this) {
-                $follow->setFollowed(null);
+            if ($follow->getFollowee() === $this) {
+                $follow->setFollowee(null);
             }
         }
 
         return $this;
     }
-
-    public function isFollowing(User $user): bool
-    {
-        foreach ($this->following as $follow) {
-            if ($follow->getFollowed() === $user) {
-                return true;
-            }
-        }
-        return false;
-        }
 }
